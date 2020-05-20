@@ -38,7 +38,7 @@ module.exports = function (app, db) {
         let sqlquery = `CALL GET_INVITATION (${requestBody.userID})`;
         let query = db.query(sqlquery, (err, result) => {
             if (err) throw err;
-            res.send(result[0]) 
+            res.send(result) 
         })
 
     });
