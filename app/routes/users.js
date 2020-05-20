@@ -30,7 +30,7 @@ module.exports = function (app, db) {
     //GET ONE USER
     app.get('/user', (req, res) => {
         let request = req.query
-        let sql = `SELECT * FROM users WHERE id = ${request.userID} or pseudo like '%${request.pseudo}%'`;
+        let sql = `SELECT * FROM users WHERE id = ${request.userID} or username like '%${request.username}%'`;
         let query = db.query(sql, (err, result) => {
             if (err) throw err; 
             console.log('Hello');
