@@ -40,7 +40,7 @@ module.exports = function (app, db) {
             if (err) throw err;
             res.send(result) 
         })
-
+ 
     });
     //GET SENDED INVITATION
     app.get('/send_invitation' ,(req, res) => {
