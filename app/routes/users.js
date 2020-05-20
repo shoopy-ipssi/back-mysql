@@ -17,7 +17,7 @@ module.exports = function (app, db) {
         })
     })
 
-    //GET USERS
+    //GET USERS 
     app.get('/users', (req, res) => {
         let sql = 'SELECT * FROM users';
         let query = db.query(sql, (err, result) => {
@@ -28,11 +28,12 @@ module.exports = function (app, db) {
     })
 
     //GET ONE USER
-    app.get('/users/:id', (req, res) => {
-        let sql = `SELECT * FROM users WHERE id = ${req.params.id}`;
+    app.get('/user', (req, res) => {
+        let request = req.query
+        let sql = `SELECT * FROM users WHERE id = ${request.userID} or pseudo like '%${request.pseudo}%'`;
         let query = db.query(sql, (err, result) => {
-            if (err) throw err;
-            console.log(result);
+            if (err) throw err; 
+            console.log('Hello');
             res.send(result);
         })
     })
