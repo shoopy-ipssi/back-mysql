@@ -15,7 +15,9 @@ module.exports = function (app, db) {
     })
     //GET FRIENDS
     app.get('/friends', (req, res) => {
+        
         let requestBody = req.query
+        console.log(requestBody)
         let sqlquery = `CALL GET_FRIENDS (${requestBody.userID})`
         let query = db.query(sqlquery, (err, result) =>{
             if (err) throw err;
