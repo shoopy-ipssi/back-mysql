@@ -10,18 +10,18 @@ module.exports = function (app, db) {
         let sqlquery = `CALL GET_POTENTIAL_FRIENDS (${requestBody.userID})`
         let query = db.query(sqlquery, (err, result) => {
             if (err) throw err;
-            console.log(result[0])
             res.send(result[0])
         })
     })
     //GET FRIENDS
     app.get('/friends', (req, res) => {
+        
         let requestBody = req.query
+        console.log(requestBody)
         let sqlquery = `CALL GET_FRIENDS (${requestBody.userID})`
         let query = db.query(sqlquery, (err, result) =>{
             if (err) throw err;
-            console.log(result[0][0])
-            res.send(result)
+            res.send(result[0])
         })
     });
     app.get('/friend', (req, res) => {
@@ -29,7 +29,6 @@ module.exports = function (app, db) {
         let sqlquery = `CALL GET_SPEC_FRIEND (${requestBody.userID}, ${requestBody.idFriend})`
         let query = db.query(sqlquery, (err, result) =>{
             if (err) throw err;
-            console.log(result[0][0])
             res.send(result)
         })
     });
@@ -39,10 +38,9 @@ module.exports = function (app, db) {
         let sqlquery = `CALL GET_INVITATION (${requestBody.userID})`;
         let query = db.query(sqlquery, (err, result) => {
             if (err) throw err;
-            console.log(result[0][0])
-            res.send(result[0][0]) 
+            res.send(result) 
         })
-
+ 
     });
     //GET SENDED INVITATION
     app.get('/send_invitation' ,(req, res) => {
@@ -51,7 +49,6 @@ module.exports = function (app, db) {
         
         let query = db.query(sqlquery, (err, result) => {
             if (err) throw err;
-            console.log(result);
             res.send(result[0][0]) 
         }) 
 
@@ -59,30 +56,26 @@ module.exports = function (app, db) {
     //GET ALL RELATION
     app.get('/all_rel', (req, res) => {
         let requestBody = req.query
-        console.log(requestBody)
         let sqlquery = `CALL GET_ALL_RELATION (${requestBody.userID})`
         let query = db.query(sqlquery, (err, result) => {
             if (err) throw err;
-            console.log(result[0][0])
             res.send(result[0][0])
-        }) 
+        })  
     })
 
     //POST SEND INVITATION
     app.post('/send_invitation', (req, res) => {
-        let requestBody = req.query;
-        console.log(req.query)
+        console.log(req)
+        let requestBody = req.body;
         let sqlquery = `CALL SEND_FRIEND_REQUEST(${requestBody.userID}, ${requestBody.idFriend})`
         let query = db.query(sqlquery, (err, result) => {
             if (err) throw err;
-            console.log(result[0][0].RESPONSE);
             res.send(result[0][0]);
         });
     })
     //POST RESPONSE INVITATION
     app.post('/recieve_invitation', (req, res) => {
-        let requestBody = req.query;
-        console.log(requestBody.typeResponse)
+        let requestBody = req.body;
         let sqlquery = ''
         if (requestBody.typeResponse == 'accept'){
             console.log('Accepting invitation'); 
@@ -92,10 +85,8 @@ module.exports = function (app, db) {
             console.log('Refusing invitation');
             sqlquery = `REFUSE_FRIEND_REQUEST`;
         }
-        console.log(sqlquery)
         let query = db.query(`CALL ${sqlquery} (${requestBody.userID}, ${requestBody.idFriend})`, (err, result) => {
             if (err) throw err;
-            console.log(result);
             res.send(result);
         });
     })
