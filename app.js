@@ -3,6 +3,7 @@ const mysql = require('mysql');
 const bodyParser = require('body-parser');
 const app = express();
 const dbConfig = require('./config/db.config');
+const PORT = process.env.PORT || 3000;
 
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(function (req, res, next) {
@@ -28,8 +29,8 @@ db.connect((err) => {
         throw err;
     }
     require('./app/routes')(app, db);
-    app.listen('3000', () => {
-        console.log('Server started on port 3000')
+    app.listen(PORT, () => {
+        console.log(`Server started on port ${PORT}`)
     });
 });
 
