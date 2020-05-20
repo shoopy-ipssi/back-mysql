@@ -65,6 +65,7 @@ module.exports = function (app, db) {
 
     //POST SEND INVITATION
     app.post('/send_invitation', (req, res) => {
+        console.log(req)
         let requestBody = req.body;
         let sqlquery = `CALL SEND_FRIEND_REQUEST(${requestBody.userID}, ${requestBody.idFriend})`
         let query = db.query(sqlquery, (err, result) => {
