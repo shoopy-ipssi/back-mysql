@@ -16,7 +16,17 @@ module.exports = function (app, db) {
             res.send('data added...');
         })
     })
-
+    app.post('/login', (req, res) => {
+        let requestBody = req.body;
+        let request = requestBody
+        let sql = `SELECT id FROM users WHERE id = ${request.userID} AND password = ${request.password}`;
+        console.log(requestBody);
+        let query = db.query(sql, requestBody, (err, result) => {
+            if (err) throw err;
+            console.log(result);
+            res.send('data added...');
+        })
+    })
     //GET USERS 
     app.get('/users', (req, res) => {
         let sql = 'SELECT * FROM users';
