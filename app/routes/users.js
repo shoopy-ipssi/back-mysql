@@ -19,12 +19,12 @@ module.exports = function (app, db) {
     app.post('/login', (req, res) => {
         let requestBody = req.body;
         let request = requestBody
-        let sql = `SELECT id FROM users WHERE id = ${request.userID} AND password = ${request.password}`;
+        let sql = `SELECT id FROM users WHERE email = ${request.email} AND password = ${request.password}`;
         console.log(requestBody);
         let query = db.query(sql, requestBody, (err, result) => {
             if (err) throw err;
             console.log(result);
-            res.send('data added...');
+            res.send('data added...'); 
         })
     })
     //GET USERS 
