@@ -24,7 +24,7 @@ module.exports = function (app, db) {
         let query = db.query(sql, requestBody, (err, result) => {
             if (err) throw err;
             console.log(result);
-            res.send(result); 
+            res.send(result);
         })
     })
     //GET USERS 
@@ -42,7 +42,7 @@ module.exports = function (app, db) {
         let request = req.query
         let sql = `SELECT * FROM users WHERE id = ${request.userID} or username like '%${request.username}%'`;
         let query = db.query(sql, (err, result) => {
-            if (err) throw err; 
+            if (err) throw err;
             console.log('Hello');
             res.send(result);
         })
@@ -68,6 +68,18 @@ module.exports = function (app, db) {
             if (err) throw err;
             console.log(result);
             res.send('data deleted...');
+        })
+    })
+
+    // Find One
+
+    app.get('/checkuser', (req, res) => {
+        let requestBody = req.body;
+        let sql = `SELECT (SELECT COUNT(*) FROM users WHERE username = '${req.body.username}') AS username, (SELECT COUNT(*) FROM users WHERE username = '${req.body.username}' AND email = '${req.body.email}') as email`;
+        db.query(sql, (err, result) => {
+            if (err) throw err;
+            console.log(result)
+            res.send(result)
         })
     })
 }
