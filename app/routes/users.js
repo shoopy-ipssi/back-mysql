@@ -24,7 +24,7 @@ module.exports = function (app, db) {
         let query = db.query(sql, requestBody, (err, result) => {
             if (err) throw err;
             console.log(result);
-            res.send('data added...'); 
+            res.send(result); 
         })
     })
     //GET USERS 
