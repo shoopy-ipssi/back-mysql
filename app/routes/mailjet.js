@@ -17,7 +17,7 @@ module.exports = function (app, db) {
 
     app.post('/sendMail', (req, res)=>{
         const requestBody = req.body
-        console.log(req)
+        console.log(requestBody)
         //Data for mail
         const FromData = {Email: emailFrom, Name: name}
         const ToData = [{Email: requestBody.EmailContact, Name: requestBody.NameContact}]
