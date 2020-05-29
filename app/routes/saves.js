@@ -5,7 +5,7 @@ module.exports = function (app, db) {
 
     // get all saves
     app.get('/saves', (req, res) => {
-        let sql = `SELECT * FROM saves WHERE id_user = '${req.body.iduser}'`;
+        let sql = `SELECT * FROM saves WHERE id_user = '${req.params.iduser}'`;
         db.query(sql, (err, result) => {
             if(err) throw err;
             console.log(result);
