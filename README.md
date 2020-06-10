@@ -1,6 +1,6 @@
 # back-mysql
 
-1. Pour exploiter cette API sur votre machine local voici les prérequis:
+1.Pour exploiter cette API sur votre machine local voici les prérequis:
 - NodeJs/NPM
 - Nodemon
 - un serveur ou faire tourner mysql (xampp est recommandé)
