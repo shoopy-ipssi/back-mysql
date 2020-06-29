@@ -37,7 +37,7 @@ module.exports = function (app, db) {
     // UPDATE save
     app.put('/save/:id', (req, res) => {
         let requestBody = req.body;
-        let sql = `UPDATE saves SET ? WHERE id_saves = '${req.params.id}'`;
+        let sql = `UPDATE saves SET ? WHERE id_save = '${req.params.id}'`;
         db.query(sql, requestBody, (err, result) => {
             if(err) throw err;
             console.log(result);
