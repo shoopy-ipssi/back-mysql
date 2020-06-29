@@ -26,6 +26,7 @@ module.exports = function (app, db) {
     // ADD one save
     app.post('/save', (req, res) => {
         let requestBody = req.body;
+        console.log(requestBody)
         let sql = `INSERT INTO saves SET ?`;
         db.query(sql, requestBody, (err, result) => {
             if(err) throw err;
