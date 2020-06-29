@@ -30,7 +30,7 @@ module.exports = function (app, db) {
         db.query(sql, requestBody, (err, result) => {
             if(err) throw err;
             console.log(result);
-            res.send(result);
+            res.send(result.insertId);
         })
     })
 

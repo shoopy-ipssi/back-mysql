@@ -47,7 +47,15 @@ module.exports = function (app, db) {
             res.send(result);
         })
     })
-
+    app.get('/userByMail', (req, res) => {
+        let requestBody = req.query
+        let sql = `SELECT * FROM users WHERE email = '${requestBody.email}'`
+        let query = db.query(sql, (err, result) => {
+            if (err) throw err;
+            console.log(result)
+            res.send(result)
+        })
+    })
     // Update USER
     app.put('/updateuser/:id', (req, res) => {
         let requestBody = req.body;
@@ -55,7 +63,7 @@ module.exports = function (app, db) {
         let query = db.query(sql, requestBody, (err, result) => {
             if (err) throw err;
             console.log(result);
-            res.send('data updated...');
+            res.send(true);
         })
     })
 
