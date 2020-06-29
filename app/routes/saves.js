@@ -30,7 +30,7 @@ module.exports = function (app, db) {
         db.query(sql, requestBody, (err, result) => {
             if(err) throw err;
             console.log(result);
-            res.send('data added...');
+            res.send(result);
         })
     })
 
@@ -41,7 +41,7 @@ module.exports = function (app, db) {
         db.query(sql, requestBody, (err, result) => {
             if(err) throw err;
             console.log(result);
-            res.send('data updated...');
+            res.send(result);
         })
     })
 
@@ -51,7 +51,7 @@ module.exports = function (app, db) {
         db.query(sql, (err, result) => {
             if(err) throw err;
             console.log(result);
-            res.send('data deleted....');
+            res.send(result);
         })
     })
 }
