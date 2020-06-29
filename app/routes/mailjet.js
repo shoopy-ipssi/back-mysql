@@ -40,6 +40,24 @@ module.exports = function (app, db) {
 
         res.send(msg)
     })
+    app.post('/createaccount', (req, res) => {
+        const requestBody = req.body
+        console.log(req)
+        const FromData = {Email: emailFrom, Name:name}
+        const ToData = [{Email: requestBody.EmailUser, Name: requestBody.NameUser}]
+        const Subject = `Création d'un compte`
+        const Text = `${requestBody.NameUser}, vous venez de créer un compte sur Shoopy, afin d'activer votre compte, veuillez cliquer sur le lien ci-dessous [link]. Toute l'équipe DoraVSPixel.`
+        const Html = `<div>${requestBody.NameUser},<br><br>vous venez de créer un compte sur Shoopy, afin d'activer votre compte, veuillez cliquer sur le lien ci-dessous <br><br><span style="border: 1px solid black; border-radius:10px; padding:15px; background-color: grey"><a href=${requestBody.linkEncrypt}>Activer mon compte</a></span><br><br>Toute l'équipe DoraVSPixel</div>`
+        const Messages = [{From:FromData, To:ToData, Subject: Subject, TextPart: Text, HtmlPart: Html}]
+        const request = mailjet.post('send', {version: 'v3.1'}).request({
+            Messages: Messages
+        })
+        let msg = true;
+        request
+            .then(result => {msg = true})
+            .catch(err => {msg=false})
+        res.send(msg)
+    })
     app.post('/forgottenPassword', (req, res) => {
         const requestBody = req.body
         console.log(req)
