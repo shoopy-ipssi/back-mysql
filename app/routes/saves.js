@@ -30,8 +30,8 @@ module.exports = function (app, db) {
         let sql = `INSERT INTO saves SET ?`;
         db.query(sql, requestBody, (err, result) => {
             if(err) throw err;
-            console.log(result);
-            res.send(result);
+            console.log(result[0]);
+            res.send(result[0]);
         })
     })
 
