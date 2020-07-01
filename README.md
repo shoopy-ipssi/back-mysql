@@ -1,9 +1,9 @@
 # back-mysql
 
 Pour exploiter cette API sur votre machine local voici les prérequis:
-- NodeJs/NPM
-- Nodemon
-- un serveur ou faire tourner mysql (xampp est recommandé)
+- NodeJs 14.0.0/NPM 6.14.4
+- Nodemon v2.0.3
+- un serveur ou faire tourner mysql MariaDB 15.1 (xampp v3.2.4 est recommandé)
 - La base de donnée importée
 
 ## Initialiser le projet
