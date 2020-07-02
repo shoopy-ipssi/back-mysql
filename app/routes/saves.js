@@ -51,7 +51,7 @@ module.exports = function (app, db) {
         let sql = `DELETE FROM saves WHERE id_save = '${req.params.id}'`;
         db.query(sql, (err, result) => {
             if(err) throw err;
-            res.send(result);
+            res.send(true);
         })
     })
 }
