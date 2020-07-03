@@ -81,7 +81,7 @@ module.exports = function (app, db) {
 
     // Find One
 
-    app.get('/checkuser', (req, res) => {
+    app.post('/checkuser', (req, res) => {
         let requestBody = req.body;
         let sql = `SELECT (SELECT COUNT(*) FROM users WHERE email = '${req.body.email}') AS email, (SELECT COUNT(*) FROM users WHERE username = '${req.body.username}') as username`;
         db.query(sql, (err, result) => {
