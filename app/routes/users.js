@@ -83,7 +83,7 @@ module.exports = function (app, db) {
 
     app.get('/checkuser', (req, res) => {
         let requestBody = req.body;
-        let sql = `SELECT (SELECT COUNT(*) FROM users WHERE email = '${req.body.email}') AS username, (SELECT COUNT(*) FROM users WHERE username = '${req.body.username}' AND email = '${req.body.email}') as email`;
+        let sql = `SELECT (SELECT COUNT(*) FROM users WHERE email = '${req.body.email}') AS email, (SELECT COUNT(*) FROM users WHERE username = '${req.body.username}') as username`;
         db.query(sql, (err, result) => {
             if (err) throw err;
             console.log(result)
